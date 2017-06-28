@@ -22,7 +22,14 @@ class Board extends React.Component {
 
   render() {
     return (
+      
+       
       <div>
+        <div className="row">
+          <div className="col-md-2 scorecard">Player X</div>
+          < div className="col-md-2 scorecard">Player Y</div> 
+        </div>
+        <br />
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -42,6 +49,14 @@ class Board extends React.Component {
     );
   }
 }
+
+// class Scoreboard extends React.Component {
+//   render() {
+//     return (
+
+//     )
+//   }
+// }
 
 class Game extends React.Component {
   constructor() {
