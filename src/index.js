@@ -25,9 +25,7 @@ class Board extends React.Component {
       
        
       <div>
-        <div className="row">
-          <div className="col-md-2 scorecard">Player X</div>
-          < div className="col-md-2 scorecard">Player Y</div> 
+        <div className="row"> 
         </div>
         <br />
         <div className="board-row">
@@ -67,6 +65,8 @@ class Game extends React.Component {
           squares: Array(9).fill(null)
         }
       ],
+      xTotal: 0,
+      oTotal: 0,
       stepNumber: 0,
       xIsNext: true
     };
@@ -115,12 +115,27 @@ class Game extends React.Component {
     let status;
     if (winner) {
       status = "Winner: " + winner;
+      winner == 'X' ? this.state.xTotal++ : this.state.oTotal++;
+      console.log('X score is: ' + this.state.xTotal + ' || O score is: ' + this.state.oTotal);
     } else {
       status = "Next player: " + (this.state.xIsNext ? "X" : "O");
     }
 
     return (
-      <div className="game">
+      
+    <div className="game">
+      <div className="row-fluid">
+        <div className="col-md-2 scorecard">
+          <div className="row">Player X</div>
+          <div className="row">{this.state.xTotal}</div>
+        </div>
+        <div className="col-md-2 scorecard">
+          <div className="row">Player O</div>
+          <div className="row">{this.state.oTotal}</div>
+      
+        </div>
+      </div>
+      <div className="row-fluid">
         <div className="game-board">
           <Board
             squares={current.squares}
@@ -132,6 +147,7 @@ class Game extends React.Component {
           <ol>{moves}</ol>
         </div>
       </div>
+    </div>
     );
   }
 }
